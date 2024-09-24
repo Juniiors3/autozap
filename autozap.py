@@ -8,7 +8,7 @@ import datetime as dt
 from datetime import date,datetime,timedelta
 import logging
 import os
-
+#Criado por Júniors3
 logging.basicConfig(level=logging.INFO,filename="Log.log", format='%(asctime)s - %(levelname)s - %(message)s')
 hora_ent = str(input('Digite a hora:  '))
 min_ent = str(input('Digite os minutos:  '))
