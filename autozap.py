@@ -34,8 +34,9 @@ while agora <= tempo:
     agora = datetime.now().strftime('%H:%M:%S')
     #print(agora)
 
+
 while len(navegador.find_elements(By.ID, 'side')) <1:
-    time.sleep(1)
+        time.sleep(1)
 time.sleep(2)
 logging.info('Carregamento com sucesso!')
 print('Deu certo')
@@ -48,6 +49,7 @@ for i, mensagem in enumerate(contato['MENSAGEM']):
     link = f"https://web.whatsapp.com/send?phone={numero}&text={texto}"
     navegador.get(link)
     time.sleep(2)
+
     while len(navegador.find_elements(By.ID, 'side')) <1:
         time.sleep(1)
     time.sleep(2)
@@ -62,31 +64,31 @@ for i, mensagem in enumerate(contato['MENSAGEM']):
         print(f'Enviado com Sucesso!{pessoa},{arquivo}')
         time.sleep(5)
 
-        if arquivo != 'N':
-            caminho_completo = os.path.abspath(f"C:\\Users\\ideil\\Documents\\autozap\\{arquivo}")
-            print(f'Pessoa{pessoa}')
-            navegador.find_element(By.XPATH,
-                                    '//*[@id="main"]/footer/div[1]/div/span/div/div[1]/div/button/span').click() # clicar no menu (anexo)
-            print('clicou em anexo')
-            time.sleep(4)
-            #navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[4]/li/div/input').send_keys(caminho_completo)# caminho do arquivo documento)
-            navegador.find_element(By.XPATH,
-                                   '/html/body/div[1]/div/div/div[2]/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input').send_keys(caminho_completo)# caminho do arquivo de foto)
-                                   #'<input accept="image/*,video/mp4,video/3gpp,video/quicktime" multiple="" type="file" style="display: none;">').send_keys(caminho_completo)# caminho do arquivo de foto)
+    if arquivo != 'N':
+        caminho_completo = os.path.abspath(f"C:\\Users\\ideil\\Documents\\autozap\\{arquivo}")
+        print(f'Pessoa{pessoa}')
+        navegador.find_element(By.XPATH,
+                                '//*[@id="main"]/footer/div[1]/div/span/div/div[1]/div/button/span').click() # clicar no menu (anexo)
+        print('clicou em anexo')
+        time.sleep(4)
+        #navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[4]/li/div/input').send_keys(caminho_completo)# caminho do arquivo documento)
+        navegador.find_element(By.XPATH,
+                                '//*[@id="app"]/div/span[5]/div/ul/div/div/div[2]/li/div/input').send_keys(caminho_completo)# caminho do arquivo de foto)
+                                #'<input accept="image/*,video/mp4,video/3gpp,video/quicktime" multiple="" type="file" style="display: none;">').send_keys(caminho_completo)# caminho do arquivo de foto)
 
-            print('busca o anexo')                      
-            time.sleep(10)
+        print('busca o anexo')                      
+        time.sleep(10)
 
-            #navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p/span').send_keys(Keys.ENTER)
-            
-            
-            navegador.find_element(By.XPATH,
-                                   '//*[@id="app"]/div/div[3]/div/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div/span').click()
-                            
-                                   #//*[@id="app"]/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div').click()#envia msg e anexo
-            print('envia a msg e anexo')
-            print(f'enviado para {pessoa}')
-            time.sleep(5)
+        #navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p/span').send_keys(Keys.ENTER)
+        
+        
+        navegador.find_element(By.XPATH,
+                                '//*[@id="app"]/div/div[3]/div/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div/span').click()
+                        
+                                #//*[@id="app"]/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div').click()#envia msg e anexo
+        print('envia a msg e anexo')
+        print(f'enviado para {pessoa}')
+        time.sleep(5)
 
 
 
