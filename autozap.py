@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO,filename="Log.log", format='%(asctime)s -
 hora_ent = str(input('Digite a hora:  '))
 min_ent = str(input('Digite os minutos:  '))
 logging.info('entrada da hora') 
-contato = pd.read_excel(r"G:\PROGRAMACAO2\AUTOMACAO V1.3 0209\BDCLIENTES.xlsx")#caminho onde ficará o arquivo bd(excel)
+contato = pd.read_excel(r"C:\Users\ideil\Documents\autozap\BDCLIENTES.xlsx")#caminho onde ficará o arquivo bd(excel)
 logging.info('importação do arquivo')
 navegador = webdriver.Chrome()
 navegador.get("https://web.whatsapp.com/")
@@ -58,19 +58,21 @@ for i, mensagem in enumerate(contato['MENSAGEM']):
         print( len(navegador.find_elements(By.XPATH,'//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[1]')))
         if len(navegador.find_elements(By.XPATH,'//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[1]')) > 0:
             print('Numero errado')
-        navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[2]').click()
+        navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[2]/button/span').click()
         print(f'Enviado com Sucesso!{pessoa},{arquivo}')
         time.sleep(5)
 
         if arquivo != 'N':
-            caminho_completo = os.path.abspath(f"G:\PROGRAMACAO2\AUTOMACAO V1.3 0209\{arquivo}")
+            caminho_completo = os.path.abspath(f"C:\\Users\\ideil\\Documents\\autozap\\{arquivo}")
             print(f'Pessoa{pessoa}')
             navegador.find_element(By.XPATH,
-                                    '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/div/span').click() # clicar no menu (anexo)
+                                    '//*[@id="main"]/footer/div[1]/div/span/div/div[1]/div/button/span').click() # clicar no menu (anexo)
             print('clicou em anexo')
             time.sleep(4)
             #navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[4]/li/div/input').send_keys(caminho_completo)# caminho do arquivo documento)
-            navegador.find_element(By.XPATH,'/html/body/div[1]/div/div/div[2]/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input').send_keys(caminho_completo)# caminho do arquivo de foto)
+            navegador.find_element(By.XPATH,
+                                   '/html/body/div[1]/div/div/div[2]/div[4]/div/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input').send_keys(caminho_completo)# caminho do arquivo de foto)
+                                   #'<input accept="image/*,video/mp4,video/3gpp,video/quicktime" multiple="" type="file" style="display: none;">').send_keys(caminho_completo)# caminho do arquivo de foto)
 
             print('busca o anexo')                      
             time.sleep(10)
@@ -78,7 +80,10 @@ for i, mensagem in enumerate(contato['MENSAGEM']):
             #navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p/span').send_keys(Keys.ENTER)
             
             
-            navegador.find_element(By.XPATH,'//*[@id="app"]/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div').click()#envia msg e anexo
+            navegador.find_element(By.XPATH,
+                                   '//*[@id="app"]/div/div[3]/div/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div/span').click()
+                            
+                                   #//*[@id="app"]/div/div[2]/div[2]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div').click()#envia msg e anexo
             print('envia a msg e anexo')
             print(f'enviado para {pessoa}')
             time.sleep(5)
