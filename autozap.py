@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.INFO,filename="Log.log", format='%(asctime)s -
 hora_ent = str(input('Digite a hora:  '))
 min_ent = str(input('Digite os minutos:  '))
 logging.info('entrada da hora') 
-contato = pd.read_excel(r"C:\Users\ideil\Documents\autozap\BDCLIENTES.xlsx")#caminho onde ficará o arquivo bd(excel)
+contato = pd.read_excel(r"E:\Downloads\autozap\BDCLIENTES.xlsx")#caminho onde ficará o arquivo bd(excel)
 logging.info('importação do arquivo')
 navegador = webdriver.Chrome()
 navegador.get("https://web.whatsapp.com/")
@@ -60,12 +60,12 @@ for i, mensagem in enumerate(contato['MENSAGEM']):
         print( len(navegador.find_elements(By.XPATH,'//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[1]')))
         if len(navegador.find_elements(By.XPATH,'//*[@id="app"]/div/span[2]/div/span/div/div/div/div/div/div[1]')) > 0:
             print('Numero errado')
-        navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span/div/div[2]/div[2]/button/span').click()
+        navegador.find_element(By.XPATH,'//*[@id="main"]/footer/div[1]/div/span/div/div/div/div[4]/div/span/button/div/div/div[1]/span').click()
         print(f'Enviado com Sucesso!{pessoa},{arquivo}')
         time.sleep(5)
 
     if arquivo != 'N':
-        caminho_completo = os.path.abspath(f"C:\\Users\\ideil\\Documents\\autozap\\{arquivo}")
+        caminho_completo = os.path.abspath(f"E:\\Downloads\\autozap\\{arquivo}")
         print(f'Pessoa{pessoa}')
         navegador.find_element(By.XPATH,
                                 '//*[@id="main"]/footer/div[1]/div/span/div/div[1]/div/button/span').click() # clicar no menu (anexo)
